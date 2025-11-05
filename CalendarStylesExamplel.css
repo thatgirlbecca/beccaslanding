@@ -1,0 +1,186 @@
+html, body {
+    height: 100%;
+    margin: 0; /* remove default white-space around the page */
+    background-color: #111; /* extend background to full page */
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+#calendar {
+    width: 100%;
+    min-height: 100vh; /* fill the viewport vertically */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0; /* ensure no automatic centering margin */
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #111111;
+    color: #FF4F91;
+}
+
+/* Positioning for centered month title with controls on right */
+#calendar-header {
+    position: relative;
+}
+
+#month {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+#month-controls {
+    margin-left: auto; /* push to the right */
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#month-controls .change-month {
+    padding: 6px 10px;
+    background-color: #FF4F91;
+    border: 1px solid #111111;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+#month-controls .change-month:hover {
+    background-color: #ff85b8;
+}
+
+#weekdays-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #333;
+    color: #FF4F91;
+    text-align: center;
+    padding: 10px;
+}
+
+#calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #333;
+    color: #fff;
+    /* let the calendar body grow to fill remaining space under the header */
+    flex: 1 1 auto;
+}
+
+#calendar-body div {
+    padding: 20px;
+    background-color: #222222;
+    text-align: center;
+}
+
+#calendar-body div.today {
+    background-color: #FF4F91;
+    color: #fff;
+}
+
+.change-month {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background: #FF4F91;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255,79,145,0.15);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* Popup form centered on screen */
+.form-popup {
+    display: none; /* JS will toggle to block */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1b1b1b;
+    color: #fff;
+    padding: 18px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    z-index: 9999;
+    width: min(520px, 92%);
+}
+
+.form-popup h2 {
+    margin-top: 0;
+}
+
+/* close X in top-right of popup */
+.form-popup .form-close-x {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+.form-popup .form-close-x:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.form-popup input[type="text"],
+.form-popup input[type="date"],
+.form-popup input[type="time"],
+.form-popup textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0 12px 0;
+    box-sizing: border-box;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.form-popup .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #FF4F91;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-popup .btn.cancel {
+    background: #444;
+    margin-left: 8px;
+}
+
+/* change the background for empty cells from previous/next month */
+#calendar-body div.prev-date,
+#calendar-body div.next-date {
+    background-color: #222222; /* Same color as main cells */
+    color: transparent; /* just in case content appears */
+}
+
+.open-button {
+    background-color: #FF4F91;
+    color: white;
+    padding: 2px 10px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    border-radius: 4px;
+    font-size: 24px;
+}
