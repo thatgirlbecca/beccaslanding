@@ -363,3 +363,7 @@ nav a.active {
 h4 {
   margin-bottom: 0;
 }
+
+.centered-heading {
+  text-align: center;
+}
